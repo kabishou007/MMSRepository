@@ -51,8 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MMS.Core\MMS.Core.csproj">
+      <Project>{42770f4d-d39d-45e3-86be-01aab01b1f13}</Project>
+      <Name>MMS.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MMS.Model\MMS.Models.csproj">
       <Project>{c0eb2c40-61ac-48e7-8b99-3c5578cf22c6}</Project>
       <Name>MMS.Models</Name>
