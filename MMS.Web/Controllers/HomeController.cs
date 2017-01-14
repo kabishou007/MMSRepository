@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MMS.WebUI.Controllers
+namespace MMS.Web.Controllers
 {
     public class HomeController : Controller
     {

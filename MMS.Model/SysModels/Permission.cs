@@ -1,11 +1,10 @@
-﻿//using MMS.Models.SysModels;
-using MMS.Models.SysModels;
+﻿using MMS.Models.SysModels;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MMS.Model.SysModels
+namespace MMS.Models.SysModels
 {
     public class Permission
     {
@@ -26,12 +25,22 @@ namespace MMS.Model.SysModels
 
         /*
          * 权限类型:
-         * 1.View：页面
+         * 1.TopMenu：父级菜单
          * 2.Menu：菜单
-         * 3.Button：按钮
+         * 3.Button：页面按钮
          */
         [DisplayName("权限类型"), Required]
         public string Type { get; set; }
+
+        /*
+         * 目标类型:
+         * 1.View：触发一个页面
+         * 2.Iframe：触发一个iframe页面
+         * 3.Menu：触发下级菜单
+         * 4.Post：出发ajax请求
+         */
+        [DisplayName("目标类型"), Required]
+        public string TargetType { get; set; }
 
         [DisplayName("目标Url")]
         public string TargetUrl { get; set; }

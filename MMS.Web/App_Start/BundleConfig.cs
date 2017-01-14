@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace MMS.WebUI
+namespace MMS.Web
 {
     public class BundleConfig
     {
