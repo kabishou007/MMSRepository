@@ -9,10 +9,10 @@ namespace MMS.Data
         private Dictionary<string, object> _repositoryPool;
         private bool _isDisposed;
 
-        public UnitOfWork(DatabaseContext context)
+        public UnitOfWork()
         {
-            //_context = new DatabaseContext();
-            _context = context;
+            _context = new DatabaseContext();
+            //_context = context;
             _repositoryPool = new Dictionary<string, object>();
             _isDisposed = false;
         }
