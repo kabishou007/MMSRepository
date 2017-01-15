@@ -1,13 +1,14 @@
 ﻿using MMS.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MMS.Data
 {
-    public interface IUnitOfWork:IDependency,IDisposable
+    public interface IUnitOfWork:IDependency, IDisposable
     {
+        IRepository<TEntity> GetRepository<TEntity>() where TEntity : class;
+
+        bool Commit();
+
+        //void Dispose();
     }
 }

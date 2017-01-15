@@ -11,6 +11,7 @@ namespace MMS.Data
         #region 单体查询
         TEntity Find(object id);
         TEntity Find(Expression<Func<TEntity, bool>> predicate);
+        TEntity Find(Expression<Func<TEntity, bool>> predicate,string[] includeProperties);
         #endregion
 
         #region 列表查询
@@ -18,18 +19,19 @@ namespace MMS.Data
         IQueryable<TEntity> FindList(Expression<Func<TEntity, bool>> predicate);
         //IQueryable<TEntity> FindList(Expression<Func<TEntity, bool>> predicate,int number);
 
-        IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, TOrder>> order, bool asc);
-        IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, TOrder>> order, bool asc, int number);
-       
-        IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool asc);
-        IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool asc, int number);
+        //IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, TOrder>> order, bool isAsc);
+        //IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, TOrder>> order, bool isAsc, int number);
+        //IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, TOrder>> order, bool isAsc, int number,string[] includeProperties);
+        //IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool isAsc);
+        //IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool isAsc, int number);
+        //IQueryable<TEntity> FindList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool isAsc, int number,string[] includeProperties);
 
+        IQueryable<TEntity> FindPageList(Expression<Func<TEntity, bool>> predicate, int pageSize, int pageIndex, out int totalCount);
+        IQueryable<TEntity> FindPageList(Expression<Func<TEntity, bool>> predicate, int pageSize, int pageIndex, out int totalCount, string[] includeProperties);
 
-        IQueryable<TEntity> FindPageList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool asc,int pageSize,int pageIndex,out int totalCount);
-        IQueryable<TEntity> FindPageList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool asc, int pageSize, int pageIndex, out int totalCount, string[] includeProperties);
+        IQueryable<TEntity> FindPageList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool isAsc, int pageSize,int pageIndex,out int totalCount);
+        IQueryable<TEntity> FindPageList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool isAsc, int pageSize, int pageIndex, out int totalCount, string[] includeProperties);
         #endregion
-
-        //IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> filter=null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy=null, string includePropertied="");
 
         #region 新增
         void Add(TEntity entity);
@@ -45,7 +47,7 @@ namespace MMS.Data
 
         #region 编辑
         void Edit(TEntity entity);
-        //int Edit(TEntity entity, string[] targetProperties);
+        void Edit(TEntity entity, string[] changedProperties);
         #endregion
     }
 }
