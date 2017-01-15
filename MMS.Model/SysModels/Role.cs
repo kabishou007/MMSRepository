@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace MMS.Models.SysModels
+namespace MMS.Models
 {
     /// <summary>
     /// 角色

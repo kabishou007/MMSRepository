@@ -46,7 +46,6 @@
     <Compile Include="SysModels\OperationLog.cs" />
     <Compile Include="SysModels\Permission.cs" />
     <Compile Include="SysModels\Role.cs" />
-    <Compile Include="SessionUser.cs" />
     <Compile Include="SysModels\User.cs" />
   </ItemGroup>
   <ItemGroup>

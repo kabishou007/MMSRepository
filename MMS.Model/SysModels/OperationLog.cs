@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace MMS.Models.SysModels
+namespace MMS.Models
 {
     /// <summary>
     /// 操作日志类，本类仅做查询，写入使用NLog框架

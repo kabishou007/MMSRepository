@@ -1,4 +1,4 @@
-﻿using MMS.Models.SysModels;
+﻿using MMS.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
