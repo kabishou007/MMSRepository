@@ -55,13 +55,13 @@
     <Folder Include="implement\BssServices\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MMS.Core\MMS.Core.csproj">
-      <Project>{42770f4d-d39d-45e3-86be-01aab01b1f13}</Project>
-      <Name>MMS.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MMS.Data\MMS.Data.csproj">
       <Project>{85bca463-36d1-4dab-bcff-1f36b915eb34}</Project>
       <Name>MMS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MMS.Infrastructure\MMS.Infrastructure.csproj">
+      <Project>{56cddea0-ece6-4d63-9b11-1c7a62cb3ee8}</Project>
+      <Name>MMS.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

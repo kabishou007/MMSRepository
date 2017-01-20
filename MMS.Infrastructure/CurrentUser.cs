@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace MMS.Models
+namespace MMS.Infrastructure
 {
-    public class SessionUser
+    public class CurrentUser
     {
         /// <summary>
         /// 用户ID

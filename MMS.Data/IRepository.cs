@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MMS.Core;
+using MMS.Infrastructure;
 using System.Linq.Expressions;
 
 namespace MMS.Data

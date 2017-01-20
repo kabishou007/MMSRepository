@@ -19,7 +19,7 @@ namespace MMS.Web
             ContainerBuilder builder = new ContainerBuilder();
 
             //注册所有的Controller，当实例化Controller类时，使用Autofac产生并注入
-            builder.RegisterControllers(Assembly.GetExecutingAssembly()).InstancePerLifetimeScope();
+            builder.RegisterControllers(Assembly.GetExecutingAssembly()).AsSelf().InstancePerLifetimeScope();
             //属性注入到视图View(同时创建类继承viewpage，注入具体属性)
             //builder.RegisterSource(new ViewRegistrationSource());
             //属性注入到Action

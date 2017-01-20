@@ -1,4 +1,4 @@
-﻿using MMS.Core;
+﻿using MMS.Infrastructure;
 using System;
 
 namespace MMS.Data

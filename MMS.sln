@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMS.Services", "MMS.Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMS.Web", "MMS.Web\MMS.Web.csproj", "{21446F93-1F8A-4AAF-BC60-09D6B2E2993B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMS.Core", "MMS.Core\MMS.Core.csproj", "{42770F4D-D39D-45E3-86BE-01AAB01B1F13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMS.Infrastructure", "MMS.Infrastructure\MMS.Infrastructure.csproj", "{56CDDEA0-ECE6-4D63-9B11-1C7A62CB3EE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{21446F93-1F8A-4AAF-BC60-09D6B2E2993B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21446F93-1F8A-4AAF-BC60-09D6B2E2993B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21446F93-1F8A-4AAF-BC60-09D6B2E2993B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42770F4D-D39D-45E3-86BE-01AAB01B1F13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42770F4D-D39D-45E3-86BE-01AAB01B1F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42770F4D-D39D-45E3-86BE-01AAB01B1F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42770F4D-D39D-45E3-86BE-01AAB01B1F13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56CDDEA0-ECE6-4D63-9B11-1C7A62CB3EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56CDDEA0-ECE6-4D63-9B11-1C7A62CB3EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56CDDEA0-ECE6-4D63-9B11-1C7A62CB3EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56CDDEA0-ECE6-4D63-9B11-1C7A62CB3EE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

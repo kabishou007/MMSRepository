@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{42770F4D-D39D-45E3-86BE-01AAB01B1F13}</ProjectGuid>
+    <ProjectGuid>{56CDDEA0-ECE6-4D63-9B11-1C7A62CB3EE8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MMS.Core</RootNamespace>
-    <AssemblyName>MMS.Core</AssemblyName>
+    <RootNamespace>MMS.Infrastructure</RootNamespace>
+    <AssemblyName>MMS.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="IDependency.cs" />
     <Compile Include="OperateResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SessionUser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
