@@ -20,10 +20,11 @@ namespace MMS.Infrastructure
         /// <summary>
         /// 用户拥有的角色
         /// </summary>
-        public List<int> RoleIDs { get; set; }
+        //public List<object> RoleIDs { get; set; }
+        
         /// <summary>
-        /// 用户角色拥有的操作资源
+        /// 用户角色拥有的权限
         /// </summary>
-        public List<int> ResourceIDs { get; set; }
+        public List<object> PermissionIDs { get; set; }
     }
 }

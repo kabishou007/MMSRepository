@@ -1,5 +1,4 @@
-﻿using MMS.Models.SysModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,22 +22,22 @@ namespace MMS.Models
         [DisplayName("父级权限ID")]
         public int? ParentID { get; set; }
 
-        /*
-         * 权限类型:
-         * 1.TopMenu：父级菜单
-         * 2.Menu：菜单
-         * 3.Button：页面按钮
-         */
+        /// <summary>
+        /// 权限类型:
+        /// 1.TopMenu：父级菜单
+        /// 2.Menu：菜单
+        /// 3.Button：页面按钮
+        /// </summary>
         [DisplayName("权限类型"), Required]
         public string Type { get; set; }
 
-        /*
-         * 目标类型:
-         * 1.View：触发一个页面
-         * 2.Iframe：触发一个iframe页面
-         * 3.Menu：触发下级菜单
-         * 4.Post：出发ajax请求
-         */
+        /// <summary>
+        /// 目标类型:
+        /// 1.View：触发一个页面
+        /// 2.Iframe：触发一个iframe
+        /// 3.Menu：触发下级菜单
+        /// 4.Post：出发ajax请求
+        /// </summary>
         [DisplayName("目标类型"), Required]
         public string TargetType { get; set; }
 
@@ -50,8 +49,6 @@ namespace MMS.Models
 
         [DisplayName("描述")]
         public string Description { get; set; }
-
-
 
         [DisplayName("父级权限"),ForeignKey("ParentID")]
         public virtual Permission ParentPermission { get; set; }

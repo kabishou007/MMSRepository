@@ -21,7 +21,7 @@ namespace MMS.Data
         /// <summary>
         /// 根据ID查询单个实体
         /// </summary>
-        public TEntity Find(object id)
+        public TEntity Get(object id)
         {
             return _dbSet.Find(id);
         }
@@ -29,7 +29,7 @@ namespace MMS.Data
         /// <summary>
         /// 根据条件查询单个实体
         /// </summary>
-        public TEntity Find(Expression<Func<TEntity, bool>> predicate)
+        public TEntity Get(Expression<Func<TEntity, bool>> predicate)
         {
             return _dbSet.FirstOrDefault(predicate);
         }
@@ -40,11 +40,11 @@ namespace MMS.Data
         /// <param name="predicate">查询条件</param>
         /// <param name="includeProperties">要加载的导航属性</param>
         /// <returns></returns>
-        public TEntity Find(Expression<Func<TEntity, bool>> predicate, string[] includeProperties)
+        public TEntity Get(Expression<Func<TEntity, bool>> predicate, string[] includeProperties)
         {
             if (includeProperties.Length<=0)
             {
-                Find(predicate);
+                Get(predicate);
             }
             IQueryable<TEntity> query = _dbSet;
             foreach (string property in includeProperties)
@@ -59,7 +59,7 @@ namespace MMS.Data
         /// <summary>
         /// 查询所有实体
         /// </summary>
-        public IQueryable<TEntity> FindList()
+        public IQueryable<TEntity> GetList()
         {
             return _dbSet;
         }
@@ -67,7 +67,7 @@ namespace MMS.Data
         /// <summary>
         /// 查询符合条件的所有实体
         /// </summary>
-        public IQueryable<TEntity> FindList(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> GetList(Expression<Func<TEntity, bool>> predicate)
         {
             return _dbSet.Where(predicate);
         }
@@ -79,11 +79,13 @@ namespace MMS.Data
         /// <param name="pageSize">每页记录数量</param>
         /// <param name="pageIndex">当前页码</param>
         /// <param name="totalCount">总记录数量</param>
-        public IQueryable<TEntity> FindPageList(Expression<Func<TEntity, bool>> predicate, int pageSize, int pageIndex, out int totalCount)
+        public IQueryable<TEntity> GetPageList(Expression<Func<TEntity, bool>> predicate, int pageSize, int pageIndex, out int totalCount)
         {
             IQueryable<TEntity> query = _dbSet.Where(predicate);
             totalCount = query.Count();
-            pageSize = pageSize <= 0 ? 20 : pageSize;
+            pageSize = pageSize <= 0 ? 50 : pageSize;
+            //当每页条数多于总条数时，按总条数取出记录
+            pageSize = pageSize > totalCount ? totalCount : pageSize;
             pageIndex = pageIndex <= 0 ? 1 : pageIndex;
             return query.Skip(pageSize * (pageIndex - 1)).Take(pageSize) ;
         }
@@ -97,11 +99,11 @@ namespace MMS.Data
         /// <param name="totalCount">总记录数量</param>
         /// <param name="includeProperties">要加载的导航属性名(列名)</param>
         /// <returns></returns>
-        public IQueryable<TEntity> FindPageList(Expression<Func<TEntity, bool>> predicate, int pageSize, int pageIndex, out int totalCount, string[] includeProperties)
+        public IQueryable<TEntity> GetPageList(Expression<Func<TEntity, bool>> predicate, int pageSize, int pageIndex, out int totalCount, string[] includeProperties)
         {
             if (includeProperties.Length <= 0)
             {
-                FindPageList(predicate, pageSize, pageIndex, out totalCount);
+                GetPageList(predicate, pageSize, pageIndex, out totalCount);
             }
             IQueryable<TEntity> query = _dbSet;
             foreach (string property in includeProperties)
@@ -110,10 +112,33 @@ namespace MMS.Data
             }
             query = query.Where(predicate);
             totalCount = query.Count();
-            pageSize = pageSize <= 0 ? 20 : pageSize;
+            pageSize = pageSize <= 0 ? 50 : pageSize;
+            //当每页条数多于总条数时，按总条数取出记录
+            pageSize = pageSize > totalCount ? totalCount : pageSize;
             pageIndex = pageIndex <= 0 ? 1 : pageIndex;
             return query.Skip(pageSize * (pageIndex - 1)).Take(pageSize);
         }
+
+        /// <summary>
+        /// 获得排序列表
+        /// </summary>
+        /// <typeparam name="TOrder">排序列类型</typeparam>
+        /// <param name="order">排序条件</param>
+        /// <param name="isAsc">是否升序排列</param>
+        /// <param name="pageSize">每页记录数量</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="totalCount">总记录数量</param>
+        IQueryable<TEntity> GetPageList<TOrder>(Expression<Func<TEntity, TOrder>> order, bool isAsc, int pageSize, int pageIndex, out int totalCount)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            totalCount = query.Count();
+            pageSize = pageSize <= 0 ? 50 : pageSize;
+            //当每页条数多于总条数时，按总条数取出记录
+            pageSize = pageSize > totalCount ? totalCount : pageSize;
+            pageIndex = pageIndex <= 0 ? 1 : pageIndex;
+            return isAsc ? query.OrderBy(order).Skip(pageSize * (pageIndex - 1)).Take(pageSize) : query.OrderByDescending(order).Skip(pageSize * (pageIndex - 1)).Take(pageSize);
+        }
+
 
         /// <summary>
         /// 获取按条件查询的分页排序列表
@@ -125,12 +150,14 @@ namespace MMS.Data
         /// <param name="pageSize">每页记录数量</param>
         /// <param name="pageIndex">当前页码</param>
         /// <param name="totalCount">总记录数量</param>
-        public IQueryable<TEntity> FindPageList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool isAsc, int pageSize, int pageIndex, out int totalCount)
+        public IQueryable<TEntity> GetPageList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool isAsc, int pageSize, int pageIndex, out int totalCount)
         {
             IQueryable<TEntity> query = _dbSet.Where(predicate);
-            pageSize = pageSize <= 0 ? 20 : pageSize;
-            pageIndex = pageIndex <= 0 ? 1 : pageIndex;
             totalCount = query.Count();
+            pageSize = pageSize <= 0 ? 50 : pageSize;
+            //当每页条数多于总条数时，按总条数取出记录
+            pageSize = pageSize > totalCount ? totalCount : pageSize;
+            pageIndex = pageIndex <= 0 ? 1 : pageIndex;
             return isAsc ? query.OrderBy(order).Skip(pageSize * (pageIndex - 1)).Take(pageSize) : query.OrderByDescending(order).Skip(pageSize * (pageIndex - 1)).Take(pageSize);
         }
 
@@ -145,11 +172,11 @@ namespace MMS.Data
         /// <param name="pageIndex">当前页码</param>
         /// <param name="totalCount">总记录数量</param>
         /// <param name="includeProperties">要加载的导航属性名(列名)</param>
-        public IQueryable<TEntity> FindPageList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool isAsc, int pageSize, int pageIndex, out int totalCount, string[] includeProperties)
+        public IQueryable<TEntity> GetPageList<TOrder>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TOrder>> order, bool isAsc, int pageSize, int pageIndex, out int totalCount, string[] includeProperties)
         {
             if (includeProperties.Length<=0)
             {
-                FindPageList(predicate, order, isAsc, pageSize, pageIndex, out totalCount);
+                GetPageList(predicate, order, isAsc, pageSize, pageIndex, out totalCount);
             }
             IQueryable<TEntity> query = _dbSet;
             foreach (string property in includeProperties)
@@ -158,7 +185,9 @@ namespace MMS.Data
             }
             query = query.Where(predicate);
             totalCount = query.Count();
-            pageSize = pageSize <= 0 ? 20 : pageSize;
+            pageSize = pageSize <= 0 ? 50 : pageSize;
+            //当每页条数多于总条数时，按总条数取出记录
+            pageSize = pageSize > totalCount ? totalCount : pageSize;
             pageIndex = pageIndex <= 0 ? 1 : pageIndex;
             return isAsc?query.OrderBy(order).Skip(pageSize * (pageIndex - 1)).Take(pageSize) : query.OrderByDescending(order).Skip(pageSize * (pageIndex - 1)).Take(pageSize);
         }

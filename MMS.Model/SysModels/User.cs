@@ -38,8 +38,8 @@ namespace MMS.Models
         [DisplayName("注册时间"),  DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreateDate { get; set; }
 
-        [Description("逻辑删除"),Required]
-        public bool IsDelete { get; set; }
+        [DisplayName("是否激活用户"),Required]
+        public bool IsActive { get; set; }
 
         [DisplayName("所属部门")]
         public virtual Department Department { get; set; }

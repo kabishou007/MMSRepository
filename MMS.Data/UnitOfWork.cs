@@ -34,9 +34,8 @@ namespace MMS.Data
             }
             return repository as BaseRepository<TEntity>;
         }
-
-
         
+
         public bool Commit()
         {
             return _context.SaveChanges() > 0;
@@ -49,6 +48,7 @@ namespace MMS.Data
             //string operateSQL = sbSQL.ToString();
             ////Logger.LogOperation(userID, operateSQL);
         }
+
 
 
         #region Dispose方法
